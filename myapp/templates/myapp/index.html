@@ -1,0 +1,22 @@
+{% extends 'myapp/base.html' %}
+
+{% block body_block %}
+    {% if last_login %}
+        <h4>Your last login were at: {{ last_login }}</h4>
+    {% else %}
+
+    {% endif %}
+    {% if top_list %}
+        <h2>List of Topics</h2>
+        <ol>
+            {% for top  in top_list %}
+                <li><a href="{% url 'myapp:detail' top.pk %}">{{ top.name }}</a></li>
+            {% endfor %}
+        </ol>
+    {% else %}
+        <strong>There are no available topics!</strong>
+    {% endif %}
+    <h2>You can Order from here</h2>
+    <a href="{% url 'myapp:place_order' %}">Place Your Order here!</a>
+{% endblock %}
+

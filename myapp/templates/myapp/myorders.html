@@ -1,0 +1,40 @@
+{% extends 'myapp/base.html' %}
+
+{% block body_block %}
+    {% if error_message %}
+        <h3>{{ error_message }}</h3>
+    {% endif %}
+    {% if student %}
+        <h3>Student Name: {{ student.first_name }} {{ student.last_name }}</h3>
+    {% else %}
+        <h3>User is not </h3>
+    {% endif %}
+
+    <h2>Submitted Orders</h2>
+    {% if order_list %}
+        <ol>
+            {% for order in order_list reversed %}
+                <li>
+                    <ul>
+                        <li>Order ID: {{ order.0 }}</li>
+                        <li>Ordered Date: {{ order.1 }}</li>
+                        <li>Order Status:
+                            {% if order.2 == 0 %}
+                                Cancelled
+                            {% elif order.2 == 1 %}
+                                Confirmed
+                            {% elif order.2 == 2 %}
+                                On Hold
+                            {% endif %}
+                        </li>
+                        <li>Total Order Items: {{ order.3 }}</li>
+                    </ul>
+                </li>
+            {% endfor %}
+        </ol>
+    {% else %}
+        <h3> No order has been submitted!</h3>
+    {% endif %}
+
+
+{% endblock body_block %}

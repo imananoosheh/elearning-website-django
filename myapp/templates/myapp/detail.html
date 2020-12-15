@@ -1,0 +1,22 @@
+{% extends 'myapp/base.html' %}
+
+{% block body_block %}
+    {% if topic_id %}
+        <h2>
+            Topic id: {{ topic_id }} | Topic Name: {{ topic.name }} | Length: {{ topic.length }} weeks
+
+
+        </h2>
+    {% else %}
+        <strong>There are no available topic with this id!</strong>
+    {% endif %}
+    {% if related_courses %}
+        <ol>
+            {% for course  in related_courses %}
+                <li> {{ course }} </li>
+            {% endfor %}
+        </ol>
+    {% else %}
+        <strong>There are no related coursed for this topic!</strong>
+    {% endif %}
+{% endblock %}
